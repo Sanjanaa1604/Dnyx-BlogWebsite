@@ -11,7 +11,7 @@ function CreatePost() {
 
     try {
       const response = await axios.post(
-        "https://dnyx-blogwebsite-1.onrender.com",
+        "https://dnyx-blogwebsite-1.onrender.com/blogs",
         {
           title,
           author,
