@@ -56,14 +56,16 @@ function Home() {
                     By {blog.author}
                   </p>
                   <button onClick={async (e) => {
-                   e.preventDefault();
-                     await axios.delete(
-                        "https://dnyx-blogwebsite-1.onrender.com"
-                        );
-                fetchBlogs();
-                  }}
-                  className="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
-                       >Delete</button>
+                     e.preventDefault();
+                     e.stopPropagation();
+                  try {
+                       await axios.delete(
+                      `https://dnyx-blogwebsite-1.onrender.com/blogs/${blog._id}`
+                       );
+                  fetchBlogs();
+                       } catch (error) {console.log(error);
+                        }
+                }}className="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">Delete</button>
 
 
                        <Link to={`/edit/${blog._id}`}onClick={(e) => e.stopPropagation()}
