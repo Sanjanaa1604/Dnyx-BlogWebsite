@@ -33,7 +33,7 @@ function EditPost() {
 
     try {
       await axios.put(
-        `http://localhost:5000/blogs/${id}`,
+         "https://dnyx-blogwebsite.onrender.com",
         {
           title,
           author,

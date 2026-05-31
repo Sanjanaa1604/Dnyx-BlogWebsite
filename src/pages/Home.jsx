@@ -53,7 +53,7 @@ function Home() {
                   <button onClick={async (e) => {
                    e.preventDefault();
                      await axios.delete(
-                        `http://localhost:5000/blogs/${blog._id}`
+                        " https://dnyx-blogwebsite.onrender.com"
                         );
                 fetchBlogs();
                   }}
