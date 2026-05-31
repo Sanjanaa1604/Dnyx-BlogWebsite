@@ -17,7 +17,7 @@ function EditPost() {
   const fetchBlog = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/blogs/${id}`
+        "https://dnyx-blogwebsite.onrender.com/blogs"
       );
 
       setTitle(res.data.title);

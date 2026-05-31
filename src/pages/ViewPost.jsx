@@ -14,7 +14,7 @@ function ViewPost() {
   const fetchBlog = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/blogs/${id}`
+        "https://dnyx-blogwebsite.onrender.com/blogs"
       );
 
       setBlog(res.data);
