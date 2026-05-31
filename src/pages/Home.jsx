@@ -6,17 +6,20 @@ function Home() {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-  axios.get("https://dnyx-blogwebsite-1.onrender.com/blogs")
-    .then(res => {
-      console.log(res.data); 
-      setBlogs(res.data);
-    })
-    .catch(err => console.log(err));
-}, []);
+    axios
+      .get("https://dnyx-blogwebsite-1.onrender.com/blogs")
+      .then((res) => {
+        console.log(res.data);
+        setBlogs(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get("https://dnyx-blogwebsite-1.onrender.com")
+      const res = await axios.get(
+        "https://dnyx-blogwebsite-1.onrender.com/blogs"
+      );
       setBlogs(res.data);
     } catch (error) {
       console.log(error);
@@ -29,9 +32,11 @@ function Home() {
         <h1 className="text-5xl font-bold text-white text-center mb-10">
           BlogNest Blogs
         </h1>
-         <p className="text-center text-purple-200 mt-2">
+
+        <p className="text-center text-purple-200 mt-2">
           A Nest for Every Story
         </p>
+
         <div className="grid md:grid-cols-2 gap-6">
           {blogs.length === 0 ? (
             <p className="text-white text-center col-span-2">
@@ -39,10 +44,7 @@ function Home() {
             </p>
           ) : (
             blogs.map((blog) => (
-              <Link
-                key={blog._id}
-                to={`/blog/${blog._id}`}
-              >
+              <Link key={blog._id} to={`/blog/${blog._id}`}>
                 <div className="bg-purple-900 p-6 rounded-xl hover:scale-105 transition">
                   <h2 className="text-2xl text-cyan-300 font-bold">
                     {blog.title}
@@ -55,22 +57,37 @@ function Home() {
                   <p className="text-pink-300 mt-3 text-sm">
                     By {blog.author}
                   </p>
-                  <button onClick={async (e) => {
-                     e.preventDefault();
-                     e.stopPropagation();
-                  try {
-                       await axios.delete(
-                      `https://dnyx-blogwebsite-1.onrender.com/blogs/${blog._id}`
-                       );
-                  fetchBlogs();
-                       } catch (error) {console.log(error);
-                        }
-                }}className="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">Delete</button>
 
+                  <button
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
 
-                       <Link to={`/edit/${blog._id}`}onClick={(e) => e.stopPropagation()}
->                      <button className="mt-2 ml-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Edit</button>
-                          </Link>
+                      try {
+                        await axios.delete(
+                          `https://dnyx-blogwebsite-1.onrender.com/blogs/${blog._id}`
+                        );
+
+                        setBlogs((prev) =>
+                          prev.filter((b) => b._id !== blog._id)
+                        );
+                      } catch (error) {
+                        console.log(error);
+                      }
+                    }}
+                    className="mt-4 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+                  >
+                    Delete
+                  </button>
+
+                  <Link
+                    to={`/edit/${blog._id}`}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <button className="mt-2 ml-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+                      Edit
+                    </button>
+                  </Link>
                 </div>
               </Link>
             ))
