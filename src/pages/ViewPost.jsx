@@ -11,17 +11,17 @@ function ViewPost() {
     fetchBlog();
   }, []);
 
-  const fetchBlog = async () => {
-    try {
-      const res = await axios.get(
-        "https://dnyx-blogwebsite-1.onrender.com"
-      );
+const fetchBlog = async () => {
+  try {
+    const res = await axios.get(
+      `https://dnyx-blogwebsite-1.onrender.com/blogs/${id}`
+    );
 
-      setBlog(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    setBlog(res.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   if (!blog) {
     return (

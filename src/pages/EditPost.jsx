@@ -14,39 +14,37 @@ function EditPost() {
     fetchBlog();
   }, []);
 
-  const fetchBlog = async () => {
-    try {
-      const res = await axios.get(
-        "https://dnyx-blogwebsite-1.onrender.com"
-      );
+const fetchBlog = async () => {
+  try {
+    const res = await axios.get(
+      `https://dnyx-blogwebsite-1.onrender.com/blogs/${id}`
+    );
 
-      setTitle(res.data.title);
-      setAuthor(res.data.author);
-      setContent(res.data.content);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    setTitle(res.data.title);
+    setAuthor(res.data.author);
+    setContent(res.data.content);
+  } catch (error) {
+    console.log(error);
+  }
+};
+const updateBlog = async (e) => {
+  e.preventDefault();
 
-  const updateBlog = async (e) => {
-    e.preventDefault();
+  try {
+    await axios.put(
+      `https://dnyx-blogwebsite-1.onrender.com/blogs/${id}`,
+      {
+        title,
+        author,
+        content,
+      }
+    );
 
-    try {
-      await axios.put(
-         "https://dnyx-blogwebsite-1.onrender.com",
-        {
-          title,
-          author,
-          content,
-        }
-      );
-
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+    navigate("/");
+  } catch (error) {
+    console.log(error);
+  }
+};
   return (
     <div className="min-h-screen bg-purple-950 flex justify-center items-center">
       <form
