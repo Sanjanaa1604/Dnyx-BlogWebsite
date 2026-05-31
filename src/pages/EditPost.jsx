@@ -17,7 +17,7 @@ function EditPost() {
   const fetchBlog = async () => {
     try {
       const res = await axios.get(
-        "https://dnyx-blogwebsite.onrender.com/blogs"
+        "https://dnyx-blogwebsite-1.onrender.com"
       );
 
       setTitle(res.data.title);
@@ -33,7 +33,7 @@ function EditPost() {
 
     try {
       await axios.put(
-         "https://dnyx-blogwebsite.onrender.com",
+         "https://dnyx-blogwebsite-1.onrender.com",
         {
           title,
           author,

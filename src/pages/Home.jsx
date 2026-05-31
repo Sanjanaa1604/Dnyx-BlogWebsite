@@ -11,7 +11,7 @@ function Home() {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get("https://dnyx-blogwebsite.onrender.com/blogs")
+      const res = await axios.get("https://dnyx-blogwebsite-1.onrender.com")
       setBlogs(res.data);
     } catch (error) {
       console.log(error);
@@ -53,7 +53,7 @@ function Home() {
                   <button onClick={async (e) => {
                    e.preventDefault();
                      await axios.delete(
-                        " https://dnyx-blogwebsite.onrender.com"
+                        "https://dnyx-blogwebsite-1.onrender.com"
                         );
                 fetchBlogs();
                   }}
