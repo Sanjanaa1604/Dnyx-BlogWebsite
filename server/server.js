@@ -5,14 +5,11 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const app = express();
 const Blog = require("./models/Blog");
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("MongoDB Connected");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+mongoose.connect(process.env.MONGO_URI, {
+  serverSelectionTimeoutMS: 5000
+})
+.then(() => console.log("MongoDB Connected"))
+.catch(err => console.log("MongoDB ERROR:", err.message));
 
 app.use(cors());
 app.use(express.json());
