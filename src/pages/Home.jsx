@@ -6,8 +6,13 @@ function Home() {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    fetchBlogs();
-  }, []);
+  axios.get("https://dnyx-blogwebsite-1.onrender.com/blogs")
+    .then(res => {
+      console.log(res.data); 
+      setBlogs(res.data);
+    })
+    .catch(err => console.log(err));
+}, []);
 
   const fetchBlogs = async () => {
     try {
